@@ -4,7 +4,7 @@
   "website" : "",
   "dependencies" : [],
   "build": {
-	  "pkg": ["glib-2.0", "gobject-2.0"],
+	  "pkgs": ["glib-2.0", "gobject-2.0"],
 	  "files": ["console.vala"],
 	  "targets": []
   }

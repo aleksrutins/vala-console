@@ -2,5 +2,10 @@
   "name" : "vala-console",
   "author" : "Aleks Rutins",
   "website" : "",
-  "dependencies" : []
+  "dependencies" : [],
+  "build": {
+	  "pkg": ["glib-2.0"],
+	  "files": ["console.vala"],
+	  "targets": []
+  }
 }

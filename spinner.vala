@@ -34,6 +34,25 @@ namespace ValaConsole {
 			public void stop() {
 				isStopping = true;
 			}
+			public class Helper {
+				SpinThread str;
+				Thread<void> tr;
+				public Helper(SpinThread str, Thread<void> tr) {
+					this.str = str;
+					this.tr = tr;
+				}
+				public void stop() {
+					this.str.stop();
+					this.tr.join();
+				}
+			}
+		}
+		public static SpinThread.Helper createAndStart(string msg, string endMsg, ulong delay = 50000) {
+			var spinner = new Spinner(msg, endMsg);
+			var spinthread = new SpinThread(spinner);
+			var thread = new Thread<void>.try("Spinner thread", spinthread.run);
+			var helper = new SpinThread.Helper(spinthread, thread);
+			return helper;
 		}
 	}
 }

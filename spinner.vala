@@ -50,7 +50,7 @@ namespace ValaConsole {
 		public static SpinThread.Helper createAndStart(string msg, string endMsg, ulong delay = 50000) {
 			var spinner = new Spinner(msg, endMsg);
 			var spinthread = new SpinThread(spinner);
-			var thread = new Thread<void>.try("Spinner thread", spinthread.run);
+			var thread = new Thread<void>("Spinner thread", spinthread.run);
 			var helper = new SpinThread.Helper(spinthread, thread);
 			return helper;
 		}

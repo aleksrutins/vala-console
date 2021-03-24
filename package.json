@@ -2,7 +2,6 @@
   "name" : "vala-console",
   "author" : "Aleks Rutins",
   "website" : "",
-  "dependencies" : [],
   "build": {
 	  "pkgs": ["glib-2.0", "gobject-2.0"],
 	  "files": ["console.vala", "spinner.vala"],

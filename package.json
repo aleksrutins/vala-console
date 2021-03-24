@@ -5,7 +5,12 @@
   "dependencies" : [],
   "build": {
 	  "pkgs": ["glib-2.0", "gobject-2.0"],
-	  "files": ["console.vala"],
-	  "targets": []
+	  "files": ["console.vala", "spinner.vala"],
+	  "targets": [
+      {
+        "name": "vala-console-test",
+        "files": ["test.vala"]
+      }
+    ]
   }
 }

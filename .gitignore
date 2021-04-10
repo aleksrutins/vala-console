@@ -1,1 +1,3 @@
 _build/
+*.c
+vala-console-test

@@ -3,8 +3,13 @@ namespace ValaConsole {
 		string msg;
 		string endMsg;
 		ulong delay;
-		public const string charset = "-\\|/";
-		public Spinner(string msg, string endMsg, ulong delay = 50000) {
+		public const string[] charset = {
+			"◢",
+			"◣",
+			"◤",
+			"◥"
+		};
+		public Spinner(string msg, string endMsg = "Complete", ulong delay = 50000) {
 			this.msg = msg;
 			this.endMsg = endMsg;
 			this.delay = delay;
@@ -16,6 +21,7 @@ namespace ValaConsole {
 		}
 		public class SpinThread {
 			bool isStopping = false;
+			bool isError = false;
 			Spinner spinner;
 			public SpinThread(Spinner spinner) {
 				this.spinner = spinner;
@@ -29,10 +35,16 @@ namespace ValaConsole {
 					spinner.render(i);
 					Thread.usleep(spinner.delay);
 				}
-				stdout.puts(@"\033[1A\033[K\033[1;32m✓\033[0m $(spinner.endMsg)\n");
+				if(isError) {
+					stdout.puts(@"\033[1A\033[K\033[1;31m\u2717\033[0;31m $(spinner.endMsg)\n");
+				} else {
+					stdout.puts(@"\033[1A\033[K\033[1;32m✓\033[0m $(spinner.endMsg)\n");
+				}
 			}
-			public void stop() {
+			public void stop(bool error, string endMsg) {
 				isStopping = true;
+				isError = error;
+				spinner.endMsg = endMsg;
 			}
 			public class Helper {
 				SpinThread str;
@@ -41,8 +53,8 @@ namespace ValaConsole {
 					this.str = str;
 					this.tr = tr;
 				}
-				public void stop() {
-					this.str.stop();
+				public void stop(string endMsg, bool error = false) {
+					this.str.stop(error, endMsg);
 					this.tr.join();
 				}
 			}

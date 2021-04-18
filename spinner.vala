@@ -3,12 +3,15 @@ namespace ValaConsole {
 		string msg;
 		string endMsg;
 		ulong delay;
-		public const string[] charset = {
-		    "⠯",
-			"⠟",
-			//"",
-			"⠽",
-			"⠾",
+		public unichar[] charset = { //Courtesy of https://github.com/sindresorhus/cli-spinners/blob/aa945cedba0b6b008fbda01c57de62301c209549/spinners.json#L17
+			'⣾',
+			'⣽',
+			'⣻',
+			'⢿',
+			'⡿',
+			'⣟',
+			'⣯',
+			'⣷'
 		};
 		public Spinner(string msg, string endMsg = "Complete", ulong delay = 100000) {
 			this.msg = msg;

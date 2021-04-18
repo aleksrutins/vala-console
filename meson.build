@@ -1,5 +1,5 @@
-vala_console_SOURCES = ['vala-console/console.vala", "vala-console/spinner.vala",
-      "vala-console/charsets/charset.vala",
-      "vala-console/charsets/useful/dots.vala",
-      "vala-console/charsets/fun/moon.vala"
-    ]
+vala_console_SOURCES = files('console.vala', 'spinner.vala',
+      'charsets/charset.vala',
+      'charsets/useful/dots.vala',
+      'charsets/fun/moon.vala'
+)

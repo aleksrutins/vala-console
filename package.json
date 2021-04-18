@@ -4,7 +4,11 @@
   "website" : "",
   "build": {
 	  "pkgs": ["glib-2.0", "gobject-2.0"],
-	  "files": ["console.vala", "spinner.vala"],
+	  "files": ["console.vala", "spinner.vala",
+      "charsets/charset.vala",
+      "charsets/useful/dots.vala",
+      "charsets/fun/moon.vala"
+    ],
 	  "targets": [
       {
         "name": "vala-console-test",

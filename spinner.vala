@@ -2,26 +2,16 @@ namespace ValaConsole {
 	public class Spinner {
 		string msg;
 		string endMsg;
-		ulong delay;
-		public unichar[] charset = { //Courtesy of https://github.com/sindresorhus/cli-spinners/blob/aa945cedba0b6b008fbda01c57de62301c209549/spinners.json#L17
-			'⣾',
-			'⣽',
-			'⣻',
-			'⢿',
-			'⡿',
-			'⣟',
-			'⣯',
-			'⣷'
-		};
-		public Spinner(string msg, string endMsg = "Complete", ulong delay = 100000) {
+		public Charsets.Charset charset;
+		public Spinner(string msg, string endMsg = "Complete", Charsets.Charset charset = new Charsets.Useful.Dots()) {
 			this.msg = msg;
 			this.endMsg = endMsg;
-			this.delay = delay;
+			this.charset = charset;
 		}
 
 		public void render(uint stage) {
-			uint actStage = (uint) stage % charset.length;
-			stdout.puts(@"\033[33m$(charset[actStage])\033[0m $msg\n");
+			uint actStage = (uint) (stage % ((charset.frames()).length));
+			stdout.puts(@"\033[33m$(charset.frames()[actStage])\033[0m $msg\n");
 		}
 		public class SpinThread {
 			bool isStopping = false;
@@ -37,7 +27,7 @@ namespace ValaConsole {
 					i++;
 					stdout.puts("\033[1A\033[K");
 					spinner.render(i);
-					Thread.usleep(spinner.delay);
+					Thread.usleep(spinner.charset.interval());
 				}
 				if(isError) {
 					stdout.puts(@"\033[1A\033[K\033[1;31m\u2717\033[0;31m $(spinner.endMsg)\033[0m\n");
@@ -63,8 +53,8 @@ namespace ValaConsole {
 				}
 			}
 		}
-		public static SpinThread.Helper createAndStart(string msg, string endMsg = "Complete", ulong delay = 50000) {
-			var spinner = new Spinner(msg, endMsg);
+		public static SpinThread.Helper createAndStart(string msg, string endMsg = "Complete", Charsets.Charset charset = new Charsets.Useful.Dots()) {
+			var spinner = new Spinner(msg, endMsg, charset);
 			var spinthread = new SpinThread(spinner);
 			var thread = new Thread<void>("Spinner thread", spinthread.run);
 			var helper = new SpinThread.Helper(spinthread, thread);

@@ -4,12 +4,13 @@ namespace ValaConsole {
 		string endMsg;
 		ulong delay;
 		public const string[] charset = {
-			"◢",
-			"◣",
-			"◤",
-			"◥"
+		    "⠯",
+			"⠟",
+			//"",
+			"⠽",
+			"⠾",
 		};
-		public Spinner(string msg, string endMsg = "Complete", ulong delay = 50000) {
+		public Spinner(string msg, string endMsg = "Complete", ulong delay = 100000) {
 			this.msg = msg;
 			this.endMsg = endMsg;
 			this.delay = delay;
@@ -36,7 +37,7 @@ namespace ValaConsole {
 					Thread.usleep(spinner.delay);
 				}
 				if(isError) {
-					stdout.puts(@"\033[1A\033[K\033[1;31m\u2717\033[0;31m $(spinner.endMsg)\n");
+					stdout.puts(@"\033[1A\033[K\033[1;31m\u2717\033[0;31m $(spinner.endMsg)\033[0m\n");
 				} else {
 					stdout.puts(@"\033[1A\033[K\033[1;32m✓\033[0m $(spinner.endMsg)\n");
 				}

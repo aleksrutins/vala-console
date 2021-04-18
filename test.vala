@@ -10,4 +10,8 @@ void main() {
     Thread.usleep(600000);
     sp2.stop("Failed", true);
     console.log("Done spinning");
+    console.list("Test list", new string[] {"Item 1", "Item 2", "Item 3"});
+    console.enumerate("Extra item");
+    console.log("A message");
+    console.enumerate("Another item");
 }

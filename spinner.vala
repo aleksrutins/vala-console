@@ -35,10 +35,13 @@ namespace ValaConsole {
 					stdout.puts(@"\033[1A\033[K\033[1;32m✓\033[0m $(spinner.endMsg)\n");
 				}
 			}
-			public void stop(bool error, string endMsg) {
+			public void stop(bool error, string? endMsg) {
 				isStopping = true;
 				isError = error;
-				spinner.endMsg = endMsg;
+
+				if(endMsg != null) {
+					spinner.endMsg = endMsg;
+				}
 			}
 			public class Helper {
 				SpinThread str;
@@ -47,7 +50,7 @@ namespace ValaConsole {
 					this.str = str;
 					this.tr = tr;
 				}
-				public void stop(string endMsg, bool error = false) {
+				public void stop(string? endMsg = null, bool error = false) {
 					this.str.stop(error, endMsg);
 					this.tr.join();
 				}

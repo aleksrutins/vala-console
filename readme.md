@@ -1,10 +1,15 @@
 # ValaConsole
 ## Installation
-This is for use in [`valapkg`](https://github.com/aleksrutins/valapkg) projects (use `valapkg add aleksrutins/vala-console`), although it can also be used in Meson projects by adding it as a submodule, using `subdir`, and concatenating `vala_console_SOURCES` to your sources list, like so:
+Add it as a subproject:
+```sh
+git submodule add https://github.com/aleksrutins/vala-console subprojects/vala-console
+```
 ```meson
-subdir('vala-console')
-...
-sources += vala_console_SOURCES
+subproject('vala-console')
+```
+And add the dependency:
+```meson
+dependency('vala-console', ['vala-console', 'vala_console_dep'])
 ```
 I will try to keep the list up to date.
 

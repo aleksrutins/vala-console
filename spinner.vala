@@ -1,7 +1,7 @@
 namespace ValaConsole {
 	public class Spinner {
-		string msg;
-		string endMsg;
+		public string msg;
+		public string endMsg;
 		public Charsets.Charset charset;
 		public Spinner(string msg, string endMsg = "Complete", Charsets.Charset charset = new Charsets.Useful.Dots()) {
 			this.msg = msg;
@@ -16,7 +16,7 @@ namespace ValaConsole {
 		public class SpinThread {
 			bool isStopping = false;
 			bool isError = false;
-			Spinner spinner;
+			public Spinner spinner;
 			public SpinThread(Spinner spinner) {
 				this.spinner = spinner;
 			}
@@ -44,7 +44,7 @@ namespace ValaConsole {
 				}
 			}
 			public class Helper {
-				SpinThread str;
+				public SpinThread str;
 				Thread<void> tr;
 				public Helper(SpinThread str, Thread<void> tr) {
 					this.str = str;

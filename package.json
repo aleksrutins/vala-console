@@ -2,5 +2,17 @@
   "$schema" : "https://aleksrutins.github.io/valapkg/project.schema.json",
   "name" : "vala-console",
   "author" : "Aleks Rutins <keeper@farthergate.com>",
-  "website" : ""
+  "website" : "",
+  "build": {
+    "files": ["spinner.vala", "console.vala", "charsets/charset.vala",
+      "charsets/useful/dots.vala",
+      "charsets/fun/moon.vala"],
+    "pkgs": ["glib-2.0", "gobject-2.0"],
+    "targets": [
+      {
+        "name": "vala-console-test",
+        "files": ["test.vala"]
+      }
+    ]
+  }
 }
